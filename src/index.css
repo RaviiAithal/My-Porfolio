@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Portfolio Design System - Dark Minimalist Theme
+All colors MUST be HSL for consistency
+*/
+
+@layer base {
+  :root {
+    /* Dark Portfolio Theme */
+    --background: 215 28% 7%;          /* #0D1117 */
+    --foreground: 210 12% 92%;         /* #E6EDF3 */
+
+    --card: 215 25% 9%;               /* Slightly lighter than bg */
+    --card-foreground: 210 12% 92%;
+
+    --popover: 215 25% 9%;
+    --popover-foreground: 210 12% 92%;
+
+    /* Accent Colors */
+    --primary: 170 100% 50%;          /* #00FFD1 - Cyan accent */
+    --primary-foreground: 215 28% 7%;
+
+    --secondary: 271 68% 65%;         /* #A855F7 - Purple accent */  
+    --secondary-foreground: 210 12% 92%;
+
+    --muted: 215 18% 15%;            /* Muted elements */
+    --muted-foreground: 210 6% 65%;
+
+    --accent: 170 100% 50%;          /* Same as primary */
+    --accent-foreground: 215 28% 7%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 12% 92%;
+
+    --border: 215 18% 15%;           /* Subtle borders */
+    --input: 215 18% 15%;
+    --ring: 170 100% 50%;           /* Focus rings use accent */
+
+    --radius: 0.75rem;
+
+    /* Custom Portfolio Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    --gradient-accent: linear-gradient(90deg, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.1));
+    --gradient-text: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    font-feature-settings: 'cv11', 'ss01';
+    font-variation-settings: 'opsz' 32;
+  }
+}
+
+@layer components {
+  /* Gradient Text Effect */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  /* Animated Gradient Background */
+  .gradient-bg {
+    background: var(--gradient-accent);
+    background-size: 400% 400%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    @apply transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg hover:shadow-primary/10;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-primary/20;
+  }
+
+  /* Glass Effect */
+  .glass {
+    @apply bg-card/10 backdrop-blur-md border border-border/50;
+  }
+
+  /* Fixed Card Component */
+  .fixed-card {
+    @apply fixed bottom-8 right-8 z-50 bg-card/90 border border-primary rounded-xl shadow-xl p-6 w-72 flex flex-col items-center backdrop-blur;
+  }
+}
+
+@layer utilities {
+  /* Animation Utilities */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

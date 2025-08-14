@@ -42,7 +42,7 @@ const Navbar = () => {
         </div>
         
         <a
-          href="/resume.pdf"
+          href="/Ravikiran_resume.pdf"
           download
           className="border border-primary text-primary hover:bg-primary hover:text-primary-foreground px-4 py-2 rounded-lg transition-all duration-300 font-medium hover-glow"
         >
